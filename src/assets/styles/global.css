@@ -1,0 +1,31 @@
+:root {
+    --color-background: #F0F0F7;
+    --color-light-green: #94bf6e;
+    --color-freen: #3b8d61;
+    --color-dark-green: #165751;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body, #root {
+    height: 100vh;
+}
+
+body {
+    background: var(--color-background);
+}
+
+#root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body, input, button, textarea {
+    font: 500 1.6rem Roboto;
+    color: #000
+}
