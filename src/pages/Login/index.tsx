@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 import './styles.css';
 
@@ -21,10 +22,10 @@ function Login() {
             </div>
 
             <div>
-                <button>Entrar</button>    
+                <button type="button" onClick={}>Entrar</button>    
                 <div className="login-links">
-                    <a href="#">Esqueci minha senha</a>
-                    <a href="#">Solicitar acesso</a>
+                    <Link to="#">Esqueci minha senha</Link>
+                    <Link to="#">Solicitar acesso</Link>
                 </div>
             </div>
             

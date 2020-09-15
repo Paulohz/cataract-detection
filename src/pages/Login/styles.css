@@ -23,7 +23,8 @@
 }
 
 .login-fields+.login-fields {
-    margin-top: 1.4rem;
+    margin: 1.4rem 0;
+ 
 }
 
 .login-fields label {
@@ -46,9 +47,23 @@
     width: calc(100% - 3.2rem);
     height: 2px;
     content: '';
-    background: #3b8d61;
+    background: var(--color-dark-green);
     position: absolute;
     left: 1.6rem;
     right: 1.6rem;
     bottom: 0;
+}
+
+.login-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.login-links a {
+    color: var(--color-green);
+    text-decoration: none;
+    border-bottom: 3px solid var(--color-dark-green);
+    font-size: 18px;
+    font-weight: bold;
 }
