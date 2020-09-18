@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 
 import './styles.css';
 
-function Login() {
+const Login: React.FC = () => {
+
+
     return (
         <div className="container">
             <div className="login-header">
@@ -22,7 +24,7 @@ function Login() {
             </div>
 
             <div>
-                <button type="button" onClick={}>Entrar</button>    
+                <Link to="terms"><button type="button">Entrar</button></Link>
                 <div className="login-links">
                     <Link to="#">Esqueci minha senha</Link>
                     <Link to="#">Solicitar acesso</Link>

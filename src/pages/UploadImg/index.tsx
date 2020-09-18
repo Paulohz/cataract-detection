@@ -3,11 +3,8 @@ import { Link } from 'react-router-dom';
 
 import Header from '../../components/Header';
 
-
-import './styles.css';
-
-const Terms: React.FC = () => {
-    return (
+const UploadImg: React.FC = () => {
+    return(
         <>
             <Header title="Diagnóstico de catarata pelo uso de imagem da retina" />
             <div className="container">
@@ -42,6 +39,6 @@ const Terms: React.FC = () => {
             </div>
         </>
     );
-};
+}
 
-export default Terms;
+export default UploadImg;

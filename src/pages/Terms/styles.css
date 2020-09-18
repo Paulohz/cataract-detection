@@ -1,0 +1,17 @@
+.container {
+    background-color: #fff;
+    color: var(--color-dark-green);
+    font-size: 14px;
+    font-weight: bold;
+    padding: 30px;
+}
+
+.container p {
+    padding: 10px 0;
+}
+
+.accept {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
