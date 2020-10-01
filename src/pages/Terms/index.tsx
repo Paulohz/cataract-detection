@@ -1,9 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
 import './styles.css';
 
 const Terms: React.FC = () => {
+    const [checked, setChecked] = React.useState(false);
+    function verifyButtonState() {
+        // checked === false ? alert("Favor verificar confirmação do termo de uso.") : <Redirect to="/uploadimg" />
+        if (checked === false) {
+            alert("Favor verificar confirmação do termo de uso.");
+        }else{
+            window.location.href = "/uploadimg";
+        }
+    }
     return (
         <>
             <div className="container">
@@ -28,12 +35,11 @@ const Terms: React.FC = () => {
                 <p>8. O presente contrato vigorará por tempo indeterminado ou durante o período em que o SITE estiver disponibilizando seus serviços via internet.</p>
 
                 <div className="accept">
-                    <input type="checkbox" />
+                    <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)} />
                     <span>Concordo com todos termos e estou ciente que diagnostico realizado pelo site não substitui o diagnostico realizado pelo profissional da área da saúde.</span>
                 </div>
-
                 <div>
-                    <Link to="terms"><button type="button">Enviar</button></Link>
+                    <button type="button" onClick={verifyButtonState}>Enviar</button>
                 </div>
             </div>
         </>

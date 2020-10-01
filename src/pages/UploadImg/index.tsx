@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Dropzone from 'react-dropzone';
 
-import { Link } from 'react-router-dom';
 import imgEye from '../../assets/eye.svg';
 
 import Header from '../../components/Header';
@@ -20,13 +19,13 @@ const UploadImg: React.FC<UploadProps> = ({ onUpload }: UploadProps) => {
             <Header title="Diagnóstico de catarata pelo uso de imagem da retina" />
             <div className="container-upload-img">
            
-                <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
+                <Dropzone onDrop={(acceptedFiles: any) => console.log(acceptedFiles)}>
                     {({ getRootProps, getInputProps }) => (
                         <div {...getRootProps()}>
                              <img src={imgEye} alt="Lupa" />
                             <input {...getInputProps()} />
                            
-                            <h1>Arraste a imagem para diagnóstico(Ou clique)</h1>
+                            <h2>Arraste a imagem para diagnóstico(Ou clique)</h2>
                         </div>
                     )}
                 </Dropzone>
