@@ -1,15 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Header from '../../components/Header';
-
-
 import './styles.css';
 
 const Terms: React.FC = () => {
     return (
         <>
-            <Header title="Diagnóstico de catarata pelo uso de imagem da retina" />
             <div className="container">
                 <p>1. A utilização da imagem será permitida para fins institucionais, acadêmicos, educacionais, informativos.</p>
 

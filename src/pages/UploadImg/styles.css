@@ -1,0 +1,27 @@
+.container-upload-img {
+    max-width: 900px;
+    padding: 30px;
+    border-radius: 20px;
+    border-color: var(--color-dark-green);
+
+    color: var(--color-dark-green);
+    font-size: 14px;
+    font-weight: bold;
+    padding: 30px;
+
+    background-color: var(--color-green);
+    max-width: 500px;
+
+}
+
+.container-upload-img div {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+.container-upload-img h1 {
+    color: #fff;
+    text-align: center;
+    font-size: 50px;;
+}
