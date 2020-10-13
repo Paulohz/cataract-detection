@@ -5,6 +5,15 @@ import { Container, Content, Accept, ButtonContainer } from './styles';
 
 
 const Terms: React.FC = () => {
+    const [checked, setChecked] = React.useState(false);
+    function verifyButtonState() {
+        // checked === false ? alert("Favor verificar confirmação do termo de uso.") : <Redirect to="/uploadimg" />
+        if (checked === false) {
+            alert("Favor verificar confirmação do termo de uso.");
+        }else{
+            window.location.href = "/uploadimg";
+        }
+    }
     return (
         <>
             <Header title="Diagnóstico de catarata pelo uso de imagem da retina" />
@@ -41,6 +50,7 @@ const Terms: React.FC = () => {
                 </Content>
 
             </Container>
+
         </>
     );
 };
