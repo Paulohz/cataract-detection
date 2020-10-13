@@ -1,38 +1,50 @@
-.container {
-    max-width: 900px;
-    background: #fff;
-    padding: 30px;
-    border-radius: 20px;
-    border-color: var(--color-dark-green);
-}
+import styled from 'styled-components';
 
-.login-header {
+export const Container = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 100vh;
+   
+  
+`
+export const Content = styled.div`
+    background: #fff;
+    padding: 50px;
+    border-color: var(--color-dark-green);
+    border-radius: 20px;
+    `
+
+
+export const LoginHeader = styled.div`
     text-align: center;
     color: #3b8d61;
     display: flex;
     flex-direction: column;
-}
 
-.login-header strong {
+    strong {
     font-size: 2rem;
 }
 
-.login-header span {
+span {
     width: 100%;
     margin: 50px 0;
 }
 
-.login-fields+.login-fields {
+`
+
+export const LoginFields = styled.div`
+
+& + & {
     margin: 1.4rem 0;
- 
 }
 
-.login-fields label {
+label {
     font-size: 1.4rem;
     color: var(--color-dark-green);
 }
 
-.login-fields input {
+input {
     width: 100%;
     height: 3.2rem;
     margin-top: 0.8rem;
@@ -43,7 +55,7 @@
     padding: 0 1.6rem;
 }
 
-.login-fields:focus-within::after {
+&:focus-within::after {
     width: calc(100% - 3.2rem);
     height: 2px;
     content: '';
@@ -54,16 +66,19 @@
     bottom: 0;
 }
 
-.login-links {
+
+`
+
+export const LoginLinks = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-}
 
-.login-links a {
+    a {
     color: var(--color-green);
     text-decoration: none;
     border-bottom: 3px solid var(--color-dark-green);
     font-size: 18px;
     font-weight: bold;
 }
+`

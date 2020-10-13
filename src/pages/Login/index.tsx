@@ -1,37 +1,40 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-import './styles.css';
+import { Container, Content, LoginHeader, LoginFields, LoginLinks } from './styles';
 
 const Login: React.FC = () => {
 
 
     return (
-        <div className="container">
-            <div className="login-header">
-                <strong>Cataract Detection</strong>
-                <span>Fazer login</span>
-            </div>
+        <Container>
+            <Content>
+                <LoginHeader>
+                    <strong>Cataract Detection</strong>
+                    <span>Fazer login</span>
+                </LoginHeader>
 
-            <div className="login-fields">
-                <label htmlFor="email">Email</label>
-                <input type="text" id="email" />
-            </div>
+                <LoginFields>
+                    <label htmlFor="email">Email</label>
+                    <input type="text" id="email" />
+                </LoginFields>
 
-            <div className="login-fields">
-                <label htmlFor="password">Password</label>
-                <input type="text" id="password" />
-            </div>
+                <LoginFields>
+                    <label htmlFor="password">Password</label>
+                    <input type="text" id="password" />
+                </LoginFields>
 
-            <div>
-                <Link to="terms"><button type="button">Entrar</button></Link>
-                <div className="login-links">
-                    <Link to="#">Esqueci minha senha</Link>
-                    <Link to="#">Solicitar acesso</Link>
+                <div>
+                    <Link to="terms"><button type="button">Entrar</button></Link>
+                    <LoginLinks className="login-links">
+                        <Link to="#">Esqueci minha senha</Link>
+                        <Link to="#">Solicitar acesso</Link>
+                    </LoginLinks>
                 </div>
-            </div>
-            
-        </div>
+
+            </Content>
+
+        </Container>
     );
 };
 

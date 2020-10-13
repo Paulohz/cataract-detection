@@ -19,12 +19,7 @@ body {
     background: var(--color-background);
 }
 
-#root {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 60px;
-}
+
 
 body, input, button, textarea {
     font: 500 1.6rem Roboto;

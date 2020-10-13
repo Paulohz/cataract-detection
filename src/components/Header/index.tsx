@@ -1,6 +1,7 @@
 import React from 'react';
 
-import './styles.css';
+import { Link } from 'react-router-dom';
+import {Container, LinkContainer, Title} from './styles';
 
 interface HeaderProps {
     title: string;
@@ -9,17 +10,17 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({title}) => {
     return (
         <>
-            <div className="header">
+            <Container>
 
-                <div className="links">
-                    <a href="paulo">Como usar</a>
-                    <a href="paulo">Sobre o projeto</a>
-                    <a href="paulo">Termos de uso</a>
-                </div>
+                <LinkContainer>
+                    <Link to="paulo">Como usar</Link>
+                    <Link to="paulo">Sobre o projeto</Link>
+                    <Link to="paulo">Termos de uso</Link>
+                </LinkContainer>
 
 
-                <div className="title">{title}</div>
-            </div>
+                <Title>{title}</Title>
+            </Container>
 
         </>
 
