@@ -25,7 +25,7 @@ O projeto foi desenvolvido utilizando as as seguintes tecnologias.
 ```bash
 $ git clone https://github.com/Paulohz/cataract-detection
 
-# Entrar no diretório do backend
+# Entrar no diretório
 $ cd cataract-detection
 
 # Instalar as dependências
