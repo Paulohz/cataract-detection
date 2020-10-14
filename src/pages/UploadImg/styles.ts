@@ -4,7 +4,8 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center; 
-
+    flex-direction: column;
+    gap: 50px;
 `;
 
 export const ContainerUploadImg = styled.div`
@@ -33,5 +34,9 @@ export const ContainerUploadImg = styled.div`
     text-align: center;
     font-size: 50px;;
 }
+
+`
+
+export const Button = styled.button`
 
 `

@@ -1,19 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
 import { Container, Content, Accept, ButtonContainer } from './styles';
 
 
 const Terms: React.FC = () => {
-    const [checked, setChecked] = React.useState(false);
+    let history = useHistory();
+
+    const checkIfTrue = localStorage.getItem('@CataractDetection/checked') === 'true' ? true : false;
+
+    const [checked, setChecked] = useState(checkIfTrue);
+
     function verifyButtonState() {
-        // checked === false ? alert("Favor verificar confirmação do termo de uso.") : <Redirect to="/uploadimg" />
         if (checked === false) {
             alert("Favor verificar confirmação do termo de uso.");
-        }else{
-            window.location.href = "/uploadimg";
+        } else {
+            history.push("/uploadimg");
         }
     }
+
+    const handleCheck = () => {
+        if (!checked) {
+            setChecked(true);
+            localStorage.setItem('@CataractDetection/checked', 'true');
+        } else {
+            setChecked(false);
+            localStorage.setItem('@CataractDetection/checked', 'false');
+        }
+
+    }
+
     return (
         <>
             <Header title="Diagnóstico de catarata pelo uso de imagem da retina" />
@@ -40,12 +56,12 @@ const Terms: React.FC = () => {
                     <p>8. O presente contrato vigorará por tempo indeterminado ou durante o período em que o SITE estiver disponibilizando seus serviços via internet.</p>
 
                     <Accept>
-                        <input type="checkbox" />
+                        <input type="checkbox" checked={checked} onClick={() => { handleCheck() }} onChange={() => { }} />
                         <span>Concordo com todos termos e estou ciente que diagnostico realizado pelo site não substitui o diagnostico realizado pelo profissional da área da saúde.</span>
                     </Accept>
 
                     <ButtonContainer>
-                        <Link to="uploadimg"><button type="button">Enviar</button></Link>
+                        <button type="button" onClick={() => { verifyButtonState() }}>Enviar</button>
                     </ButtonContainer>
                 </Content>
 

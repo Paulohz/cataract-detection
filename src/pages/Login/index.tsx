@@ -1,9 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import { Container, Content, LoginHeader, LoginFields, LoginLinks } from './styles';
 
 const Login: React.FC = () => {
+    let history = useHistory();
+
+    const checkIfTrue = localStorage.getItem('@CataractDetection/checked') === 'true' ? true : false;
+
+
+
+    const handleSubmit = () => {
+        if (checkIfTrue) {
+            history.push("/uploadimg");
+        } else {
+            history.push("/terms");
+        }
+    }
 
 
     return (
@@ -21,14 +34,14 @@ const Login: React.FC = () => {
 
                 <LoginFields>
                     <label htmlFor="password">Password</label>
-                    <input type="text" id="password" />
+                    <input type="password" id="password" />
                 </LoginFields>
 
                 <div>
-                    <Link to="terms"><button type="button">Entrar</button></Link>
+                    <button onClick={() => handleSubmit()} type="button">Entrar</button>
                     <LoginLinks className="login-links">
-                        <Link to="#">Esqueci minha senha</Link>
-                        <Link to="#">Solicitar acesso</Link>
+                        <Link to="/forgotpassword">Esqueci minha senha</Link>
+                        <Link to="/signup">Solicitar acesso</Link>
                     </LoginLinks>
                 </div>
 
