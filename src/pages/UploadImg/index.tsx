@@ -85,7 +85,7 @@ const UploadImg: React.FC<UploadProps> = () => {
 
                 </ContainerUploadImg>
 
-                            {visible === true && 
+                {visible === true && 
                 <Button type="button" onClick={handleUpload}>Enviar</Button>
                             }
 
