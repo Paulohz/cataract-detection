@@ -23,33 +23,36 @@ interface FileProps {
     readableSize: string;
 }
 
-const UploadImg: React.FC<UploadProps> = ({ onUpload }: UploadProps) => {
+const UploadImg: React.FC<UploadProps> = () => {
     const [uploadedFiles, setUploadedFiles] = useState<FileProps[]>([]);
+    const [visible, setVisible] = useState(false);
 
     //const history = useHistory();
 
     async function handleUpload(): Promise<void> {
+
         const data = new FormData();
-    
         const file = uploadedFiles[0];
-    
+
         data.append('image', file.file);
-    
         console.log(uploadedFiles);
-        
+
+
+
         try {
-          await api.post('/predict', data).then(response => {
+            await api.post('/predict', data).then(response => {
                 alert(response.data)
             });
-    
-          //history.push('/');  
+
+            //history.push('/');  
+
         } catch (err) {
-          console.log(err);
+            console.log(err);
         }
-      }
+    }
 
     function submitFile(files: File[]): void {
-        console.log(files);
+
 
         const uploadFiles = files.map(file => ({
             file,
@@ -58,14 +61,15 @@ const UploadImg: React.FC<UploadProps> = ({ onUpload }: UploadProps) => {
         }));
 
         setUploadedFiles(uploadFiles);
-
+        setVisible(true);
     }
 
     return (
         <>
+
             <Header title="Diagnóstico de catarata pelo uso de imagem da retina" />
             <Container>
-                <ContainerUploadImg className="container-upload-img">
+                <ContainerUploadImg>
 
                     <Dropzone onDrop={acceptedFiles => submitFile(acceptedFiles)}>
                         {({ getRootProps, getInputProps }) => (
@@ -81,8 +85,12 @@ const UploadImg: React.FC<UploadProps> = ({ onUpload }: UploadProps) => {
 
                 </ContainerUploadImg>
 
+                            {visible === true && 
                 <Button type="button" onClick={handleUpload}>Enviar</Button>
+                            }
+
             </Container>
+
 
 
         </>

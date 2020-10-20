@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const Container = styled.div`
     display: flex;
@@ -38,5 +39,15 @@ export const ContainerUploadImg = styled.div`
 `
 
 export const Button = styled.button`
+    background: #3b8d61;
+    color: #fff;
+    border: 0;
+    padding: 15px 60px;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: background-color 0.2s;
 
-`
+    &:hover {
+        background: ${shade(0.2, '#3b8d61')};
+    }
+`;
