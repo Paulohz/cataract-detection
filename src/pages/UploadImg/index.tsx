@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
+//import { Link } from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
-
 import filesize from 'filesize';
 
-//import { Link } from 'react-router-dom';
-import imgEye from '../../assets/eye.svg';
-
-import Header from '../../components/Header';
-
-import { Container, ContainerUploadImg, Button } from './styles';
-//import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
 
+import Header from '../../components/Header';
+import Modal from '../../components/Modal';
+
+import { Container, ContainerUploadImg, Button } from './styles';
+
+
+import imgEye from '../../assets/eye.svg';
 
 interface UploadProps {
     onUpload: Function;
@@ -23,9 +24,19 @@ interface FileProps {
     readableSize: string;
 }
 
+interface ModalProps {
+    chanceNormal: number;
+    classe: string; 
+}
+
+
 const UploadImg: React.FC<UploadProps> = () => {
     const [uploadedFiles, setUploadedFiles] = useState<FileProps[]>([]);
     const [visible, setVisible] = useState(false);
+    const [open, setOpen] = useState(false);
+
+    const [result, setResult] = useState('');
+    const [eyeClass, setEyeClass] = useState<string>();
 
     //const history = useHistory();
 
@@ -35,14 +46,15 @@ const UploadImg: React.FC<UploadProps> = () => {
         const file = uploadedFiles[0];
 
         data.append('image', file.file);
-        console.log(uploadedFiles);
-
-
 
         try {
             await api.post('/predict', data).then(response => {
-                alert(response.data)
+                setOpen(true);
+              
             });
+
+            
+          
 
             //history.push('/');  
 
@@ -85,12 +97,15 @@ const UploadImg: React.FC<UploadProps> = () => {
 
                 </ContainerUploadImg>
 
-                {visible === true && 
-                <Button type="button" onClick={handleUpload}>Enviar</Button>
-                            }
+                {visible === true &&
+                    <Button type="button" onClick={handleUpload}>Enviar</Button>
+                }
 
             </Container>
 
+            <Modal isOpenend={open} precision={2011} result={'normal'} />
+      
+            
 
 
         </>
