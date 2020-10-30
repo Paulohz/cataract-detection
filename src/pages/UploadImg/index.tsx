@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-//import { Link } from 'react-router-dom';
-//import { useHistory } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
 import filesize from 'filesize';
 
@@ -26,7 +24,7 @@ interface FileProps {
 
 interface ModalProps {
     chanceNormal: number;
-    classe: string; 
+    classe: string;
 }
 
 
@@ -35,28 +33,27 @@ const UploadImg: React.FC<UploadProps> = () => {
     const [visible, setVisible] = useState(false);
     const [open, setOpen] = useState(false);
 
-    const [result, setResult] = useState('');
-    const [eyeClass, setEyeClass] = useState<string>();
-
-    //const history = useHistory();
+    const [result, setResult] = useState(0);
+    const [eyeClass, setEyeClass] = useState('');
 
     async function handleUpload(): Promise<void> {
 
         const data = new FormData();
         const file = uploadedFiles[0];
 
+        setVisible(false);
+
         data.append('image', file.file);
 
         try {
-            await api.post('/predict', data).then(response => {
+            await api.post<ModalProps>('/predict', data).then(response => {
                 setOpen(true);
-              
+                const diagnosis = response.data;
+
+                setResult(diagnosis.chanceNormal);
+                setEyeClass(diagnosis.classe);
+
             });
-
-            
-          
-
-            //history.push('/');  
 
         } catch (err) {
             console.log(err);
@@ -64,7 +61,7 @@ const UploadImg: React.FC<UploadProps> = () => {
     }
 
     function submitFile(files: File[]): void {
-
+        setOpen(false);
 
         const uploadFiles = files.map(file => ({
             file,
@@ -103,9 +100,12 @@ const UploadImg: React.FC<UploadProps> = () => {
 
             </Container>
 
-            <Modal isOpenend={open} precision={2011} result={'normal'} />
-      
-            
+            {
+                open === true && <Modal isOpenend={open} precision={result} result={eyeClass} />
+            }
+
+
+
 
 
         </>

@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Container, Content, ModalHeader, ModalBody, ModalFooter, Close } from './styles';
 
 interface ModalProps {
     isOpenend: boolean;
     precision: number;
-    result: string; 
+    result: string;
 }
 
 
 const Modal: React.FC<ModalProps> = ({ isOpenend, precision, result, children }) => {
 
+    const [openModal, setOpenModal] = useState(isOpenend);
+
     const handleClose = () => {
-        isOpenend = false;
+        setOpenModal(false);
     }
+
 
     return (
         <>
-            {isOpenend === true &&
+            {openModal === true &&
                 <Container>
                     <Content>
                         <ModalHeader>
@@ -29,7 +32,7 @@ const Modal: React.FC<ModalProps> = ({ isOpenend, precision, result, children })
                             <p>{result}</p>
                         </ModalBody>
                         <ModalFooter>
-                            <h3>Precisão do diagnótico: {precision} </h3>
+                            <h3>Precisão do diagnótico: {Math.round(precision * 100)}% </h3>
                         </ModalFooter>
                     </Content>
                     {children}
