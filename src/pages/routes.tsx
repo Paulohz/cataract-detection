@@ -7,6 +7,10 @@ import SignUp from './SignUp';
 import Terms from './Terms';
 import UploadImg from './UploadImg';
 
+import About from './About';
+import HowToUse from './HowToUse';
+import TermsOfUse from './TermsOfUse';
+
 function Routes() {
     return (
         <BrowserRouter>
@@ -15,6 +19,10 @@ function Routes() {
             <Route path="/forgotpassword" component={ForgotPassword} />
             <Route path="/terms" component={Terms} />
             <Route path="/uploadimg" component={UploadImg} />
+
+            <Route path="/about" component={About} />
+            <Route path="/howtouse" component={HowToUse} />
+            <Route path="/termsofuse" component={TermsOfUse} />
         </BrowserRouter>
     )
 }

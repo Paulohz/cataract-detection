@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
-import { Container, Content, ModalHeader, ModalBody, ModalFooter, Close } from './styles';
+import Gauge from '../Gauge'
+import { Container, Content, ModalHeader, ModalBody, Close } from './styles';
 
 interface ModalProps {
     isOpenend: boolean;
@@ -17,7 +18,6 @@ const Modal: React.FC<ModalProps> = ({ isOpenend, precision, result, children })
         setOpenModal(false);
     }
 
-
     return (
         <>
             {openModal === true &&
@@ -25,15 +25,11 @@ const Modal: React.FC<ModalProps> = ({ isOpenend, precision, result, children })
                     <Content>
                         <ModalHeader>
                             <Close onClick={() => (handleClose())}>&times;</Close>
-                            <h2>Diagnóstico</h2>
+                            <h2>Resultado da predição</h2>
                         </ModalHeader>
-                        <ModalBody>
-                            <p>Resultado: </p>
-                            <p>{result}</p>
-                        </ModalBody>
-                        <ModalFooter>
-                            <h3>Precisão do diagnótico: {Math.round(precision * 100)}% </h3>
-                        </ModalFooter>
+                        <ModalBody>                        
+                            <Gauge value={precision} result={result}/>                            
+                        </ModalBody>                  
                     </Content>
                     {children}
                 </Container>

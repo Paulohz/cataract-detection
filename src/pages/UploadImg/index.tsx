@@ -23,45 +23,59 @@ interface FileProps {
 }
 
 interface ModalProps {
+    chanceCatarata: number;
     chanceNormal: number;
     classe: string;
+    confianca: number;
+    open: boolean;
 }
 
 
 const UploadImg: React.FC<UploadProps> = () => {
     const [uploadedFiles, setUploadedFiles] = useState<FileProps[]>([]);
-    const [visible, setVisible] = useState(false);
-    const [open, setOpen] = useState(false);
 
-    const [result, setResult] = useState(0);
-    const [eyeClass, setEyeClass] = useState('');
+    const [diagnosis, setDiagnosis] = useState<ModalProps>();
+    const [loading, setLoading] = useState(false);
 
     async function handleUpload(): Promise<void> {
-
+        setLoading(true);
         const data = new FormData();
         const file = uploadedFiles[0];
 
-        setVisible(false);
+        const temp = [...uploadedFiles];
+        temp.shift();
+        setUploadedFiles(temp)
 
         data.append('image', file.file);
 
         try {
+
             await api.post<ModalProps>('/predict', data).then(response => {
-                setOpen(true);
                 const diagnosis = response.data;
-
-                setResult(diagnosis.chanceNormal);
-                setEyeClass(diagnosis.classe);
-
+                setDiagnosis({
+                    chanceCatarata: diagnosis.chanceCatarata,
+                    chanceNormal: diagnosis.chanceNormal,
+                    classe: diagnosis.classe,
+                    open: true,
+                    confianca: diagnosis.classe === 'normal' ? diagnosis.chanceNormal : diagnosis.chanceCatarata
+                });
             });
 
         } catch (err) {
             console.log(err);
         }
+        setLoading(false);
     }
 
     function submitFile(files: File[]): void {
-        setOpen(false);
+
+        setDiagnosis({
+            chanceCatarata: 0,
+            chanceNormal: 0,
+            confianca: 0,
+            classe: '',
+            open: false
+        })
 
         const uploadFiles = files.map(file => ({
             file,
@@ -70,7 +84,6 @@ const UploadImg: React.FC<UploadProps> = () => {
         }));
 
         setUploadedFiles(uploadFiles);
-        setVisible(true);
     }
 
     return (
@@ -80,7 +93,7 @@ const UploadImg: React.FC<UploadProps> = () => {
             <Container>
                 <ContainerUploadImg>
 
-                    <Dropzone onDrop={acceptedFiles => submitFile(acceptedFiles)}>
+                    <Dropzone accept={'.png'} onDrop={acceptedFiles => submitFile(acceptedFiles)}>
                         {({ getRootProps, getInputProps }) => (
                             <div {...getRootProps()}>
                                 <img src={imgEye} alt="Lupa" />
@@ -94,19 +107,22 @@ const UploadImg: React.FC<UploadProps> = () => {
 
                 </ContainerUploadImg>
 
-                {visible === true &&
-                    <Button type="button" onClick={handleUpload}>Enviar</Button>
+                {
+
+                    uploadedFiles.length > 0 && <Button type="button" onClick={handleUpload}>Enviar</Button>
                 }
+                {loading && (
+                    <i
+                        className="fa fa-refresh fa-spin"
+                        style={{ color: "var(--color-dark-green)" }}
+                    />
+                )}
 
             </Container>
 
             {
-                open === true && <Modal isOpenend={open} precision={result} result={eyeClass} />
+                diagnosis?.open && <Modal isOpenend={diagnosis.open} precision={diagnosis.confianca} result={diagnosis.classe} />
             }
-
-
-
-
 
         </>
     );

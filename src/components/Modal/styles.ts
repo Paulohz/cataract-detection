@@ -19,33 +19,43 @@ export const Content = styled.div`
   margin: auto;
   padding: 0;
   border: 1px solid #888;
-  width: 50%;
+  width: 30%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s;
+
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
-export const ModalHeader= styled.div`
+export const ModalHeader = styled.div`
     padding: 2px 16px;
     background-color: var(--color-dark-green);;
     color: white;
+    text-align: center;
 
 `;
 
-export const ModalBody= styled.div`
+export const ModalBody = styled.div`
+    margin-top: 30px;
     padding: 2px 16px;
+
+    text-align: center;
+    gap: 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 `;
 
- export const ModalFooter= styled.div`
+export const ModalFooter = styled.div`
     padding: 2px 16px;
     background-color: var(--color-dark-green);;
     color: #fff;
 `;
 
 
- export const Close = styled.div`
+export const Close = styled.div`
     color: #fff;
     float: right;
     font-size: 28px;

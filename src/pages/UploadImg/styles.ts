@@ -33,7 +33,7 @@ export const ContainerUploadImg = styled.div`
     h1 {
     color: #fff;
     text-align: center;
-    font-size: 50px;
+    font-size: 30px;
 }
 
 `

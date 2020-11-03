@@ -13,9 +13,10 @@ const Header: React.FC<HeaderProps> = ({title}) => {
             <Container>
 
                 <LinkContainer>
-                    <Link to="paulo">Como usar</Link>
-                    <Link to="paulo">Sobre o projeto</Link>
-                    <Link to="paulo">Termos de uso</Link>
+                    <Link to="/howtouse">Como usar</Link>
+                    <Link to="/about">Sobre o projeto</Link>
+                    <Link to="/termsofuse">Termos de uso</Link>
+                    <Link to="uploadimg">Diagnóstico</Link>
                 </LinkContainer>
 
 
