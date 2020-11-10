@@ -1,16 +1,17 @@
 import React, {useState} from 'react';
 
 import Gauge from '../Gauge'
-import { Container, Content, ModalHeader, ModalBody, Close } from './styles';
+import { Container, Content, ModalHeader, ModalBody, Close, UploadedImage } from './styles';
 
 interface ModalProps {
     isOpenend: boolean;
     precision: number;
     result: string;
+    imageLink: string
 }
 
 
-const Modal: React.FC<ModalProps> = ({ isOpenend, precision, result, children }) => {
+const Modal: React.FC<ModalProps> = ({ isOpenend, precision, result, imageLink, children }) => {
 
     const [openModal, setOpenModal] = useState(isOpenend);
 
@@ -28,8 +29,12 @@ const Modal: React.FC<ModalProps> = ({ isOpenend, precision, result, children })
                             <h2>Resultado da predição</h2>
                         </ModalHeader>
                         <ModalBody>                        
-                            <Gauge value={precision} result={result}/>                            
-                        </ModalBody>                  
+                            <Gauge value={precision} result={result}/>      
+
+                             <UploadedImage src={imageLink} alt="Imagem de upload" />                              
+                        </ModalBody>    
+
+                        
                     </Content>
                     {children}
                 </Container>

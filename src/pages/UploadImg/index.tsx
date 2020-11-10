@@ -7,7 +7,7 @@ import api from '../../services/api';
 import Header from '../../components/Header';
 import Modal from '../../components/Modal';
 
-import { Container, ContainerUploadImg, Button } from './styles';
+import { Container, ContainerUploadImg, Button, UploadedImage } from './styles';
 
 
 import imgEye from '../../assets/eye.svg';
@@ -20,6 +20,7 @@ interface FileProps {
     file: File;
     name: string;
     readableSize: string;
+    preview: string;
 }
 
 interface ModalProps {
@@ -28,6 +29,7 @@ interface ModalProps {
     classe: string;
     confianca: number;
     open: boolean;
+    imageLink: string;
 }
 
 
@@ -57,7 +59,8 @@ const UploadImg: React.FC<UploadProps> = () => {
                     chanceNormal: diagnosis.chanceNormal,
                     classe: diagnosis.classe,
                     open: true,
-                    confianca: diagnosis.classe === 'normal' ? diagnosis.chanceNormal : diagnosis.chanceCatarata
+                    confianca: diagnosis.classe === 'normal' ? diagnosis.chanceNormal : diagnosis.chanceCatarata,
+                    imageLink: file.preview
                 });
             });
 
@@ -74,14 +77,18 @@ const UploadImg: React.FC<UploadProps> = () => {
             chanceNormal: 0,
             confianca: 0,
             classe: '',
-            open: false
+            open: false,
+            imageLink: ''
         })
 
         const uploadFiles = files.map(file => ({
             file,
             name: file.name,
             readableSize: filesize(file.size),
+            preview: URL.createObjectURL(file)
         }));
+
+        console.log(uploadFiles);
 
         setUploadedFiles(uploadFiles);
     }
@@ -102,15 +109,21 @@ const UploadImg: React.FC<UploadProps> = () => {
                                 <h1>Arraste a imagem para diagnóstico(Ou clique)</h1>
                             </div>
                         )}
+
+
                     </Dropzone>
+
+                    {
+                        uploadedFiles.length > 0 && <UploadedImage src={uploadedFiles[0].preview} alt="Imagem de upload" />
+                    }
 
 
                 </ContainerUploadImg>
 
                 {
-
                     uploadedFiles.length > 0 && <Button type="button" onClick={handleUpload}>Enviar</Button>
                 }
+
                 {loading && (
                     <i
                         className="fa fa-refresh fa-spin"
@@ -121,7 +134,7 @@ const UploadImg: React.FC<UploadProps> = () => {
             </Container>
 
             {
-                diagnosis?.open && <Modal isOpenend={diagnosis.open} precision={diagnosis.confianca} result={diagnosis.classe} />
+                diagnosis?.open && <Modal isOpenend={diagnosis.open} precision={diagnosis.confianca} result={diagnosis.classe} imageLink={diagnosis.imageLink} />
             }
 
         </>

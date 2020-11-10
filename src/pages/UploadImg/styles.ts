@@ -51,3 +51,9 @@ export const Button = styled.button`
         background: ${shade(0.2, '#3b8d61')};
     }
 `;
+
+export const UploadedImage = styled.img`
+    width: 100%;
+    margin-top: 15px;
+
+`;

@@ -36,7 +36,7 @@ export const ModalHeader = styled.div`
 `;
 
 export const ModalBody = styled.div`
-    margin-top: 30px;
+    margin: 30px 0;
     padding: 2px 16px;
 
     text-align: center;
@@ -68,3 +68,11 @@ export const Close = styled.div`
         cursor: pointer;
     }
  `;
+
+
+export const UploadedImage = styled.img`
+
+    width: 90%;
+    margin-top: 15px;
+
+`;
